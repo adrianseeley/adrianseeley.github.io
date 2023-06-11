@@ -14,31 +14,31 @@
 
         <p>3D printing remote control airplane frames is nothing new - at the time of writing there are dozens of free designs available for download that are well tested and likely designed by someone with at least a bare minimum understanding of aerospace engineering. Luckily what I lack in aerospace knowledge I can make up with airfoil charts, parametric CAD, and brute force genetic optimization. Or at least that's the plan. I'm using the airfoil <i>SA7038</i> as my starting point, because it seems to be a popular airfoil for radio controlled gliders and sail planes.</p>
         
-        <img src="0001-0.png"/>
+        <img src="0.png"/>
         
         <p>Most 3D prints aren't overly concerned with layer height or nozzle diameter precision, but designing an airfoil with a skin exactly one nozzle diameter thick requires some careful calculations. Here I have chosen to define the shape of a rib that runs along the chord of the airfoil, then by <i>hulling</i> two ribs a solid airfoil shape is created. This rib shape can then be <i>offset</i> inwards by the desired airfoil skin thickness, in this case exactly 1 nozzle diameter (0.4mm). By <i>hulling</i> this shrunken solid airfoil, and <i>differencing</i> it from the original, we are left with only the skin of an airfoil, exactly 1 nozzle diameter thick. The intention here is to print the airfoil tall-ways on the print bed.</p>
 
-        <img src="0001-1.png"/>
+        <img src="1.png"/>
 
         <p>Once the basic parametric airfoil module is established I can then modify it's airfoil shape (displayed here is: <i>SA7038</i>), chord length, section span length, skin thickness, rib thickness, or any other parameters by changing a single variable. The idea here is that a genetic algorithm could tune these variables against a battery of computational fluid dynamics performance tests to find an optimized set of parameters for whatever flight characteristics are desired.</p>
         
-        <img src="0001-2.png"/>
+        <img src="2.png"/>
 
         <p>Thin plastic on it's own is enough to provide a shell of an airfoil, but most larger scale gliders and sailplanes use one or more carbon fiber or fiberglass spars along the length of the airfoils to provide structural strength. I was sure to include methods for providing spar pathways with configurable tolerances to ensure the tightest fit possible. This is still more of a placeholder rib design but stands to serve as a nice demonstration of what is possible.</p>
 
-        <img src="0001-3.png"/>
+        <img src="3.png"/>
 
         <p>Opening the test airfoil in Prusa slicer shows the intended result. Printing with a 0.4mm nozzle and 0.3mm layer height.</p>
 
-        <img src="0001-4.png"/>
+        <img src="4.png"/>
 
         <p>This test airfoil is only 6.84g printed in standard PLA.</p>
 
-        <img src="0001-5.png"/>
+        <img src="5.png"/>
 
         <p>One layer of PLA is surprisingly flexible, it almost feels like taught plastic wrap. Two or three skin layers may be required, or possibly some kind of sparse internal webbing to act as reinforcement. I had hoped the bridging over the top rib would come out smoother, but it looks like I will need to add a draft angle or sweep against the ribs to print without any bridging or overhang. The slicer also wants to make an awkward wrap around pass near the trailing edge (back edge) of the airfoil which will take some more tinkering to get right.</p>
 
-        <img src="0001-6.jpg"/>
+        <img src="6.jpg"/>
 
         <p>Still a lot of exploring to do here, but with quite a bit of promise.</p>
 
@@ -46,31 +46,31 @@
 
         <p>I've gone back and added an internal sweep from the ribs on the airfoil section.</p>
 
-        <img src="0001-7.png"/>
+        <img src="7.png"/>
 
         <p>I feel like this should add some extra structural support around the ribs and spar holes.</p>
 
-        <img src="0001-8.png"/>
+        <img src="8.png"/>
 
         <p>On the upper rib (relative to how the section is printed) this sweep allows for almost zero bridging.</p>
 
-        <img src="0001-9.png"/>
+        <img src="9.png"/>
 
         <p>Additionally I have added a second skin layer, making the skin two nozzle diameters thick (0.8mm). Switching to 100% rectilinear infill also dramatically cleans up the slicing on the tail as far as the preview goes. With the added layer of skin and rib sweeps the new weight is 14.82g (compared to 6.84g in the previous test). I would expect roughly double from adding the second layer of skin (6.84g * 2 = 13.68g), meaning the rib sweeps only add about 1.2g combined. A small price to pay for the added strength and loss off bridging in the print.</p>
 
-        <img src="0001-10.png"/>
+        <img src="10.png"/>
 
         <p>By default with this design the Prusa slicer wants to start each perimeter at the same position. Setting: <i>Seam Position -> Random</i> resolves this issue and provides a better result.</p>
 
-        <img src="0001-11.png"/>
+        <img src="11.png"/>
 
         <p>The second test print looks almost identical to the first, but pressing down on the center of the airfoil in the weakest point has a substantial amount more resistance. Two layers of skin (0.8mm total) appears to be quite strong, especially when compared to a single layer which as though the skin itself would flutter while moving through the air.</p>
 
-        <img src="0001-12.jpg"/>
+        <img src="12.jpg"/>
 
         <p>I broke off the top rib from the second test print and was unable to break it in any direction by hand with a pretty large amount of force. It feels solid and rigid with a little flex, like a wooden pencil almost. Comparing the top layers side by side it's evident that the rib sweep and removal of most of the bridging in the print provided a cleaner result - although there is still room for improvement.</p>
 
-        <img src="0001-13.jpg"/>
+        <img src="13.jpg"/>
 
         <p>There may be a tradeoff point between the number of ribs, rib spacing, chord length, airfoil shape, and the thickness of the airfoil skin. I would suspect a single skin layer (0.4mm) could be viable in certain configurations of the aforementioned parameters.</p>
         
