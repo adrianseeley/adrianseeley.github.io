@@ -5,9 +5,40 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>AdrianSeeley.com</title>
+        <style>
+            .container {
+                margin: 0 auto;
+                max-width: 800px;
+                padding: 20px;
+            }
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+        </style>
     </head>
     <body>
-<pre>Adrian Seeley (contact@adrianseeley.com)
-<a href="./fire2024">Firesetting Milestones Study 2024</a></pre>
+        <div class="container">
+            <h1>Adrian Seeley</h1>
+
+            <div>
+                <h2>2025-01-01 Extra Random Forest Hyperparameter Effects on MNIST</h2>
+                <p>
+                    This experiment was an exploration of the effects of hyperparameters on the performance of an extra random forest on the MNIST dataset - sometimes also referred to as a random-random forest, or extremely random forest. Each tree in the forest is given a random sample of datapoints with replacement, meaning each tree effectively receives a different weighting of the training data, with some weights being 0 and some weights being more than 1. This reduces correlation between trees to improve generalization. Furthermore, each tree is given a random subset of input features without replacement to consider for making splits. This further reduces correlation between trees and improves generalization. Finally, the characteristic that distinguishes extra random forests from random forests is that the split criteria is randomly selected with no attempt to reduce entropy, error, impurity, loss, or any other measure of the quality of the split. Instead the only crtieria is that the split must be valid, in that the data must be partitioned into two non empty sets. At first glance this might appear nonsensical, but although the split criteria is randomly selected, the actual partitioning of the data is not. It is akin to spilling two colors of beans on a table and randomly drawing a line across the table, one partition may be more black beans, and the other may be more white beans. If we make enough random partitions, the average of the partitions will be a good approximation of the true underlying distribution of beans. This is the essence of the extra random forest. Normal attempts to seek maximum information gain do the same thing, but are expensive and seek to reduce the ultimate complexity of the tree; though this seeking can create bias in the model.
+                </p>
+                <p>
+                    Each sample was 1-hot encoded over 10 classes (aka, the 10 digits in MNSIT), and the input features were not normalized since no measure of information is taken at splits requiring a normalized basis. All trees were grown to completion with a minimum of 1 sample per leaf, or no splits being possible. Feature index was randomized, as well as feature values, to ensure that each split had an equal chance of occuring at any component and value pair. Each forest was unique in that it received a different number of input components per tree, with the actual components being selected randomly for each tree; ie., when 2 input components are provided to a forest, tree A might recieve x=[0, 6], and tree B might receive [34, 2]. Different trees were able to repeat input components. Each forest was started at 1 tree, measured against a test set, then iteratively had 1 tree added before testing again. Trees were grown in this way up to 500 trees per forest.
+                </p>
+                <p>
+                    Much to my surprise, only the forests with a very small number of input components per tree (less than 10 or so out of a possible 784) performed poorly, as shown by the fingers on one side of the graph in teal, green and yellow. Once enough input components are provided the fitness of the forests are essentially equal. This is likely in line with the typical random forest input count selection criteria of sqrt(n) input components per tree, in this case sqrt(784) = 28 input components. Though this is surely not observed in all data sets. There is also a very clear learning curve and ceiling, whereby the addition of further trees has significantly reduced returns on error reduction. This graph took around 60 hours to run on a 16 core machine (non-gpu), written in C#. Not all forests finished growing before the experiment was stopped, but the trend is quite clear.
+                </p>
+                <img src="./img/2025-01-01-000.png" alt="2025-01-01-000" />
+                <img src="./img/2025-01-01-001.png" alt="2025-01-01-001" />
+                <img src="./img/2025-01-01-002.png" alt="2025-01-01-002" />
+                <img src="./img/2025-01-01-003.png" alt="2025-01-01-003" />
+                <img src="./img/2025-01-01-004.png" alt="2025-01-01-004" />
+                <img src="./img/2025-01-01-005.png" alt="2025-01-01-005" />
+            </div>
+        </div>
     </body>
 </html>
