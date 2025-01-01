@@ -22,6 +22,25 @@
             <h1>Adrian Seeley</h1>
 
             <div>
+                <h2>2025-01-01 Extra Random Forest Minimum Leaf Size Effects on MNIST</h2>
+                <p>
+                    Building on the previous experiment, and setting the number of input components per tree to 50 (well above the established minimum viable threshold), this experiment explored the minimum leaf size threshold. Whereby a tree will stop growing if the number of samples in a leaf is less than the threshold. This is a common method of controlling overfitting on regular decision trees, but given the nature of extra random trees already being quite robust to overfitting, it seemed worth exploring.
+                </p>
+                <p>
+                    Again forests were started at 1 tree and grown to 500 trees, although this trial was taken to it's conclusion due to the much smaller number of forest required. Minimum leaf sizes from 1 through 100 were explored. The larger the minimum leaf size (ie., towards 100) the faster the trees are created as they are stopped at a much shallower configuration, however the much deeper trees with a low minimum leaf size (ie., towards 1) proved to be much more accurate on the test set.
+                </p>
+                <p>
+                    There is a sneaky caveat here however, in that it is understood that a model requires a certain amount of complexity (based on the model type) to achieve a level of accuracy, and when we restrict the minimum leaf sizes, we are dramatically stunting the amount of complexity in a forest with an equal number of trees. So although both forests (1 and 100 leaf size) may have 500 trees, the forest with 1 leaf size may have geometrically more complexity than a forest with 100 leaf size. The next experiment should measure the complexity of the forests to validate if its actually the complexity that is driving the accuracy, or if the minimum leaf size is actually a good control for overfitting.
+                </p>
+                <img src="./img/2025-01-01-006.png" alt="2025-01-01-006" />
+                <img src="./img/2025-01-01-007.png" alt="2025-01-01-007" />
+                <img src="./img/2025-01-01-008.png" alt="2025-01-01-008" />
+                <img src="./img/2025-01-01-009.png" alt="2025-01-01-009" />
+                <img src="./img/2025-01-01-010.png" alt="2025-01-01-0010" />
+
+            </div>
+
+            <div>
                 <h2>2025-01-01 Extra Random Forest Hyperparameter Effects on MNIST</h2>
                 <p>
                     This experiment was an exploration of the effects of hyperparameters on the performance of an extra random forest on the MNIST dataset - sometimes also referred to as a random-random forest, or extremely random forest. Each tree in the forest is given a random sample of datapoints with replacement, meaning each tree effectively receives a different weighting of the training data, with some weights being 0 and some weights being more than 1. This reduces correlation between trees to improve generalization. Furthermore, each tree is given a random subset of input features without replacement to consider for making splits. This further reduces correlation between trees and improves generalization. Finally, the characteristic that distinguishes extra random forests from random forests is that the split criteria is randomly selected with no attempt to reduce entropy, error, impurity, loss, or any other measure of the quality of the split. Instead the only crtieria is that the split must be valid, in that the data must be partitioned into two non empty sets. At first glance this might appear nonsensical, but although the split criteria is randomly selected, the actual partitioning of the data is not. It is akin to spilling two colors of beans on a table and randomly drawing a line across the table, one partition may be more black beans, and the other may be more white beans. If we make enough random partitions, the average of the partitions will be a good approximation of the true underlying distribution of beans. This is the essence of the extra random forest. Normal attempts to seek maximum information gain do the same thing, but are expensive and seek to reduce the ultimate complexity of the tree; though this seeking can create bias in the model.
