@@ -22,6 +22,29 @@
             <h1>Adrian Seeley</h1>
 
             <div>
+                <h2>2025-01-04 Extra Random Forest Minimum Leaf Size Effects on MNIST (Same Node Count)</h2>
+                <p>
+                    This was a followup on the previous experiment. Since a tree built to exhaustion with a higher minimum leaf size will have fewer nodes than a tree built to exhaustion with a lower minimum leaf size, it means the forest would have overall less complexity (ie., less node count). Due to the nature of minimum complexity requirements for a model to be accurate, it was important to ensure that a forest with a higher minimum leaf size could grow to the same number of nodes regardless of the tree count, and attempt to compete from an accuracy perspective.
+                </p>
+                <p>
+                    A few interesting results came to light here. When trees have the smallest minimum leaf size of 1, literally a tree grown to exhaustion so that each leaf contains one sample, the forest has a slower learning ascent, meaning more trees are required to hit the plateau of accuracy. As the minimum leaf size slowly increases we hit see a sweet spot emerge whereby the accuracy plateau is reached much quicker (around 3-4 minimum leaf size), though the maximum accuracy is no greater. As we continue to push the minimum leaf size higher, the accuracy plateau is still achieved very quickly, but the maximum accuracy of the model even over many many trees (thousands in this case) is much lower. Even as the complexity of the model increases, the boundaries of division in the feature space are so fuzzy that even when averaged together it underfits.
+                </p>
+                <p>
+                    Note that the model was not fully finished in this experiments as the trend became clear and it had already run for 6 days. The results show that orthogonal space paritioning, even if it is randomized, is most affective when the boundaries are grown to exhaustion (assuming the dataset isnt adversarial or excessively noisy). This is very similar to the results of a KNN model which creates a non-linear voronoi boundary between samples. Without further layers of abstraction, the model is at best a fuzzy lookup table in n-space.
+                </p>
+                <p>
+                    In theory you could create a list of orthogonal hyper-regions in feature space, and average the results and achieve the same result, though the algorithm for growing extra random trees is really just a more efficient means of doing that intelligently. The next experiment may explore a method of weighting a knn's feature space using greedy inclusion or exclusion of features to eliminate confounding features in the euclidean distance space.
+                </p>
+                <img src="./img/2025-01-04-000.png" alt="2025-01-04-000" />
+                <img src="./img/2025-01-04-001.png" alt="2025-01-04-001" />
+                <img src="./img/2025-01-04-002.png" alt="2025-01-04-002" />
+                <img src="./img/2025-01-04-003.png" alt="2025-01-04-003" />
+                <img src="./img/2025-01-04-004.png" alt="2025-01-04-004" />
+                <img src="./img/2025-01-04-005.png" alt="2025-01-04-005" />
+                <img src="./img/2025-01-04-006.png" alt="2025-01-04-006" />
+            </div>
+
+            <div>
                 <h2>2025-01-01 Extra Random Forest Minimum Leaf Size Effects on MNIST</h2>
                 <p>
                     Building on the previous experiment, and setting the number of input components per tree to 50 (well above the established minimum viable threshold), this experiment explored the minimum leaf size threshold. Whereby a tree will stop growing if the number of samples in a leaf is less than the threshold. This is a common method of controlling overfitting on regular decision trees, but given the nature of extra random trees already being quite robust to overfitting, it seemed worth exploring.
@@ -36,8 +59,7 @@
                 <img src="./img/2025-01-01-007.png" alt="2025-01-01-007" />
                 <img src="./img/2025-01-01-008.png" alt="2025-01-01-008" />
                 <img src="./img/2025-01-01-009.png" alt="2025-01-01-009" />
-                <img src="./img/2025-01-01-010.png" alt="2025-01-01-0010" />
-
+                <img src="./img/2025-01-01-010.png" alt="2025-01-01-010" />
             </div>
 
             <div>
