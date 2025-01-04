@@ -22,6 +22,14 @@
             <h1>Adrian Seeley</h1>
 
             <div>
+                <h2>2025-01-04 KNN Greedy Feature Selection</h2>
+                <p>
+                    Just a quick test to see the effects of greedy feature selection on KNN (1000 train, 1000 test). IT shows promise in terms of at least feature reduction for KNN-like algorithms, though KNN being a lazy learner grows exponentially slow without some more intelligent structure for lookup.
+                </p>
+                <img src="./img/2025-01-04-007.png" alt="2025-01-04-007" />
+            </div>
+
+            <div>
                 <h2>2025-01-04 Extra Random Forest Minimum Leaf Size Effects on MNIST (Same Node Count)</h2>
                 <p>
                     This was a followup on the previous experiment. Since a tree built to exhaustion with a higher minimum leaf size will have fewer nodes than a tree built to exhaustion with a lower minimum leaf size, it means the forest would have overall less complexity (ie., less node count). Due to the nature of minimum complexity requirements for a model to be accurate, it was important to ensure that a forest with a higher minimum leaf size could grow to the same number of nodes regardless of the tree count, and attempt to compete from an accuracy perspective.
