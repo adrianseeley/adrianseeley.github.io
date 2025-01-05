@@ -27,7 +27,7 @@
                     When creating splits in extra random forests and extra random trees, there is a choice to either make the split: (a) directly on an observed feature value, (b) at a midpoint between any two observed feature values, or (c) at a midpoint between two ordered adjacent feature values. The first option of splitting on the point itseslf means the partition boundary is directly on an observed value and has no margin. Splitting between any two feature values means the boundary can include a margin so large that it actually crosses other classifications inappropriately. Finally, splitting between adjacent values can reduce this innappropriate crossing, assuming the dataset is saturated enough to have two feature values in the same region without other classes in between. If we synthetically saturate the dataset with noisy copies, tranlations, rotations, skews, or other modifications, this requirement of saturation is easy to achieve and should have the effect of creating larger margins around observations.
                 </p>
                 <p>
-                    As per this limited experiment, it seems that (a) is better than (b), and (c) is better than both, even without high dataset saturation. So (c) will be used as the hard coded default going forward.
+                    It seems like (b), splitting on the midpoint of any two feature values only creates a confounding region, and (c) appears to perform similar to (a), and with (a) being the simpler of the lot, will be maintained.
                 </p>
                 <img src="./img/2025-01-05-000.png" alt="2025-01-05-000" />
                 <img src="./img/2025-01-05-001.png" alt="2025-01-05-001" />
